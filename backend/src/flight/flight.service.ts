@@ -24,7 +24,7 @@ export class FlightService {
   ): Promise<Flight[]> {
     const whereClause: any = {};
 
-    if (date) whereClause.date = date;
+    // if (date) whereClause.date = date;
     if (source) whereClause.source = source;
     if (destination) whereClause.destination = destination;
 

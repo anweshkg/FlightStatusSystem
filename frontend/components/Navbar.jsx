@@ -1,6 +1,5 @@
 "use client";
 
-"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -9,7 +8,7 @@ import { useUserContext } from "@/context/UserContext";
 
 export default function Navbar() {
   const { userData, setUserData } = useUserContext();
-  const [notificationCount, setNotificationCount] = useState(3); // Example count
+  const [notificationCount, setNotificationCount] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -33,36 +32,39 @@ export default function Navbar() {
               </span>
             </Link>
           </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <NavLink href="/">Home</NavLink>
-              {userData ? (
-                <>
-                  <NavLink href="/profile">Profile</NavLink>
-                  <div className="relative">
-                    <NavLink href="/notifications">
-                      <Bell size={20} />
-                      {notificationCount > 0 && (
-                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                          {notificationCount}
-                        </span>
-                      )}
-                    </NavLink>
-                  </div>
-                  <button
-                    onClick={handleLogout}
-                    className="text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
-                  <NavLink href="/login">Login</NavLink>
-                  <NavLink href="/register">Register</NavLink>
-                </>
-              )}
-            </div>
+          <div className="hidden md:flex md:items-center md:space-x-4">
+            {userData && (
+              <div className="relative">
+                <Link
+                  href="/notifications"
+                  className="text-white hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  <Bell size={20} />
+                  {notificationCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {notificationCount}
+                    </span>
+                  )}
+                </Link>
+              </div>
+            )}
+            <NavLink href="/">Search</NavLink>
+            {userData ? (
+              <>
+                <NavLink href="/profile">Profile</NavLink>
+                <button
+                  onClick={handleLogout}
+                  className="text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <NavLink href="/login">Login</NavLink>
+                <NavLink href="/register">Register</NavLink>
+              </>
+            )}
           </div>
           <div className="md:hidden flex items-center">
             <button
@@ -89,11 +91,10 @@ export default function Navbar() {
                 )}
               </MobileNavLink>
             )}
-            <MobileNavLink href="/">Home</MobileNavLink>
+            <MobileNavLink href="/">Search</MobileNavLink>
             {userData ? (
               <>
                 <MobileNavLink href="/profile">Profile</MobileNavLink>
-
                 <button
                   onClick={handleLogout}
                   className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:text-indigo-200 hover:bg-indigo-700"

@@ -15,7 +15,7 @@ export const UserContextProvider = ({
     const storedUser = localStorage.getItem("token");
     if (storedUser) {
       try {
-        setUserData(JSON.parse(storedUser));
+        setUserData(storedUser);
       } catch (error) {
         console.error("Error parsing user data from localStorage:", error);
       }
