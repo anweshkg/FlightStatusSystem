@@ -62,7 +62,7 @@ export default function FlightResults({ date, source, destination }) {
         router.push("/login");
         return;
       }
-      await axios.post(
+      await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/flights/update-delay/${flightId}`,
         {},
         {

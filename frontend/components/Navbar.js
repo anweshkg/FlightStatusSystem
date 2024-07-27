@@ -1,14 +1,18 @@
 'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { Bell } from 'lucide-react';
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
   }, []);
 
   const handleLogout = () => {
@@ -32,6 +36,16 @@ export default function Navbar() {
               <Link href="/profile" className="text-white hover:text-indigo-200">
                 Profile
               </Link>
+              <div className="relative inline-block">
+                <Link href="/notifications" className="text-white hover:text-indigo-200 relative">
+                  <Bell size={17} />
+                </Link>
+                {notificationCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                    {notificationCount}
+                  </span>
+                )}
+              </div>
               <button onClick={handleLogout} className="text-white hover:text-indigo-200">
                 Logout
               </button>
@@ -50,4 +64,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+};

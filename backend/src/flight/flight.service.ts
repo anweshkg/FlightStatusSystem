@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Flight } from './flight.entity';
 import { KafkaService } from 'src/kafka/kafka.service';
 import { User } from 'src/user/user.entity';
+import { NotificationService } from 'src/notification/notification.service';
 
 @Injectable()
 export class FlightService {
@@ -13,6 +14,7 @@ export class FlightService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private kafkaService: KafkaService,
+    private notificationService: NotificationService,
   ) {}
 
   async getFlights(
@@ -90,6 +92,20 @@ export class FlightService {
     flight.status = delay > 0 ? 'Delayed' : 'On Time';
     await this.flightRepository.save(flight);
 
+    for (const user of flight.subscribedUsers) {
+      const message = `Your flight ${flight.flightNumber} has been ${flight.status.toLowerCase()}. New departure time: ${flight.departureTime}.`;
+      
+      // Create in-app notification
+      await this.notificationService.createNotification(user.id, {
+        flightId: flight.flightNumber,
+        message,
+        timestamp: new Date(),
+        method: 'App',
+        recipient: user.id.toString(),
+      });
+    }
+
+    // Produce Kafka event
     await this.kafkaService.produce('flight-delays', { flightId: id, delay });
 
     return flight;

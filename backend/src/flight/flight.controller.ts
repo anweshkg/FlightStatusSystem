@@ -29,7 +29,7 @@ export class FlightController {
     return { message: 'Unsubscribed successfully' };
   }
   
-  @Post('update-delay/:id')
+  @Get('update-delay/:id')
   async updateDelay(@Param('id') id: string) {
     const delay = Math.floor(Math.random() * 61); // Random delay between 0 and 60
     return this.flightService.updateDelay(+id, delay);

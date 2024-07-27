@@ -80,7 +80,7 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
     const { userId, flightId, action } = payload;
     const user = await this.userRepository.findOne({
       where: { id: userId },
-      relations: ['subscribedFlights'],
+      relations: ['subscribedFlights']
     });
 
     if (!user) {
