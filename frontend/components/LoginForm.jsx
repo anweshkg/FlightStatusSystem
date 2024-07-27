@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useUserContext } from '@/context/UserContext';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -9,12 +10,16 @@ export default function LoginForm() {
   const [error, setError] = useState('');
   const router = useRouter();
 
+  const { setUserData } = useUserContext();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API}/auth/login`, { email, password });
-      localStorage.setItem('token', response.data.access_token);
+      const token = response.data.access_token;
+      setUserData(token);
+      localStorage.setItem('token', token);
       router.push('/');
     } catch (error) {
       setError('Login failed. Please check your credentials and try again.');
