@@ -28,7 +28,7 @@ export default function Navbar() {
                 Flight Status System
               </span>
               <span className="text-indigo-200 text-sm ml-2">
-                Hack To Hire '24
+                Hack To Hire '24 by Anwesh [anweshkg@gmail.com]
               </span>
             </Link>
           </div>
@@ -48,7 +48,7 @@ export default function Navbar() {
                 </Link>
               </div>
             )}
-            <NavLink href="/">Search</NavLink>
+            <NavLink href="/">Search Flights</NavLink>
             {userData ? (
               <>
                 <NavLink href="/profile">Profile</NavLink>
@@ -91,7 +91,7 @@ export default function Navbar() {
                 )}
               </MobileNavLink>
             )}
-            <MobileNavLink href="/">Search</MobileNavLink>
+            <MobileNavLink href="/">Search Flights</MobileNavLink>
             {userData ? (
               <>
                 <MobileNavLink href="/profile">Profile</MobileNavLink>
