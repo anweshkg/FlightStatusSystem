@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import { Flight } from '../flight/flight.entity';
+import { Notification } from 'src/notification/notification.entity';
 
 @Entity()
 export class User {
@@ -18,4 +19,7 @@ export class User {
   @ManyToMany(() => Flight, (flight) => flight.subscribedUsers)
   @JoinTable()
   subscribedFlights: Flight[];
+
+  @OneToMany(() => Notification, notification => notification.user)
+  notifications: Notification[];
 }

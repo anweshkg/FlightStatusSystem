@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { format } from "date-fns";
 
 export default function FlightResults({ date, source, destination }) {
   const [flights, setFlights] = useState([]);
@@ -62,7 +63,7 @@ export default function FlightResults({ date, source, destination }) {
         router.push("/login");
         return;
       }
-      await axios.post(
+      await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/flights/update-delay/${flightId}`,
         {},
         {
@@ -85,7 +86,7 @@ export default function FlightResults({ date, source, destination }) {
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold mb-4">
         Flights from {source || "anywhere"} to {destination || "anywhere"}
-        {date && ` on ${new Date(date).toLocaleDateString()}`}
+        {date && ` on ${format(new Date(date), "PPP")}`}
       </h2>
       {flights.map((flight) => (
         <div
@@ -112,16 +113,24 @@ export default function FlightResults({ date, source, destination }) {
               <p>{flight.flightNumber}</p>
             </div>
             <div>
+              <p className="font-medium">Source:</p>
+              <p>{flight.source}</p>
+            </div>
+            <div>
+              <p className="font-medium">Destination:</p>
+              <p>{flight.destination}</p>
+            </div>
+            <div>
               <p className="font-medium">Departure:</p>
-              <p>{flight.departureTime}</p>
+              <p>{format(new Date(flight.departureTime), "PPPpp")}</p>
             </div>
             <div>
               <p className="font-medium">Arrival:</p>
-              <p>{flight.arrivalTime}</p>
+              <p>{format(new Date(flight.arrivalTime), "PPPpp")}</p>
             </div>
             <div>
-              <p className="font-medium">Date:</p>
-              <p>{new Date(flight.date).toLocaleDateString()}</p>
+              <p className="font-medium">Delay:</p>
+              <p>{flight.delay ? `${flight.delay} mins` : "No Delay"}</p>
             </div>
           </div>
           <div className="mt-4 space-x-2">
@@ -137,7 +146,7 @@ export default function FlightResults({ date, source, destination }) {
             >
               Unsubscribe
             </button>
-            {flight.id === 2 && (
+            {(
               <button
                 onClick={() => handleDelayUpdate(flight.id)}
                 className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition duration-200"

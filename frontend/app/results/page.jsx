@@ -10,9 +10,11 @@ export default function Results({ searchParams }) {
   return (
     <div className="flex flex-col items-center space-y-8">
       <h1 className="text-4xl font-bold text-center text-indigo-700">
-        Flight Results
+        Check Flight Status
       </h1>
-      <SearchForm initialValues={searchParams} />
+      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg p-8">
+        <SearchForm initialValues={searchParams} />
+      </div>
       <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg p-8">
         <Suspense fallback={<div className="text-center">Loading...</div>}>
           <FlightResults

@@ -1,29 +1,33 @@
 import { Injectable } from '@nestjs/common';
-import * as twilio from 'twilio';
+import { Vonage } from '@vonage/server-sdk';
+import { Auth } from '@vonage/auth';
 
 @Injectable()
 export class SMSService {
-  // private client: twilio.Twilio;
+  private client: Vonage;
 
-  // constructor() {
-  //   this.client = twilio(
-  //     process.env.TWILIO_ACCOUNT_SID,
-  //     process.env.TWILIO_AUTH_TOKEN
-  //   );
-  // }
+  constructor() {
+    const credentials = new Auth({
+      apiKey: process.env.VONAGE_API_KEY,
+      apiSecret: process.env.VONAGE_API_SECRET
+    });
 
-  // async sendSMS(to: string, body: string) {
-  //   try {
-  //     const message = await this.client.messages.create({
-  //       body: body,
-  //       from: process.env.TWILIO_PHONE_NUMBER,
-  //       to: to,
-  //     });
-  //     console.log('SMS sent successfully:', message.sid);
-  //     return message;
-  //   } catch (error) {
-  //     console.error('Error sending SMS:', error);
-  //     throw error;
-  //   }
-  // }
+    this.client = new Vonage(credentials);
+  }
+
+  async sendSMS(to: string, body: string) {
+    try {
+      const response = await this.client.sms.send({
+        to: to,
+        from: process.env.VONAGE_PHONE_NUMBER,
+        text: body
+      });
+
+      console.log('SMS sent successfully:', response.messages[0].messageId);
+      return response;
+    } catch (error) {
+      console.error('Error sending SMS:', error);
+      throw error;
+    }
+  }
 }

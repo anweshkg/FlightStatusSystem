@@ -80,7 +80,7 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
     const { userId, flightId, action } = payload;
     const user = await this.userRepository.findOne({
       where: { id: userId },
-      relations: ['subscribedFlights'],
+      relations: ['subscribedFlights']
     });
 
     if (!user) {
@@ -92,9 +92,9 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
     const body = `You have successfully ${action}d to flight ${flightId}`;
 
     await this.emailService.sendEmail(user.email, subject, body);
-    // if (user.phoneNumber) {
-    //   await this.smsService.sendSMS(user.phoneNumber, body);
-    // }
+    if (user.phoneNumber) {
+      await this.smsService.sendSMS(user.phoneNumber, body);
+    }
   }
 
   private async handleDelayMessage(payload: any) {
@@ -114,9 +114,9 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
 
     for (const user of flight.subscribedUsers) {
       await this.emailService.sendEmail(user.email, subject, body);
-      // if (user.phoneNumber) {
-      //   await this.smsService.sendSMS(user.phoneNumber, body);
-      // }
+      if (user.phoneNumber) {
+        await this.smsService.sendSMS(user.phoneNumber, body);
+      }
     }
   }
 }
