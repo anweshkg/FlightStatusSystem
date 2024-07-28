@@ -28,7 +28,7 @@ export default function Navbar() {
                 Flight Status System
               </span>
               <span className="text-indigo-200 text-sm ml-2">
-                Hack To Hire '24 by Anwesh [anweshkg@gmail.com]
+                Indigo Hack To Hire '24 by Anwesh [anweshkg@gmail.com]
               </span>
             </Link>
           </div>
