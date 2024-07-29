@@ -8,6 +8,10 @@ A real-time flight status monitoring system built with Next.js, NestJS, Apache K
 
 This Flight Status System is a comprehensive solution for tracking and notifying users about flight statuses. It leverages modern web technologies and event-driven architecture to provide real-time updates and notifications to users.
 
+![1](readme_images/1.png)
+
+![2](readme_images/2.png)
+
 ### Key Features
 
 - Real-time flight status updates
