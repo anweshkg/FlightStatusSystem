@@ -12,11 +12,17 @@ This Flight Status System is a comprehensive solution for tracking and notifying
 
 ![2](readme_images/2.png)
 
+![3](readme_images/3.png)
+
+![4](readme_images/4.png)
+
+![5](readme_images/5.png)
+
 ### Key Features
 
 - Real-time flight status updates
 - User subscription to specific flights
-- Multi-channel notifications (Email, SMS, Push Notifications)
+- Multi-channel notifications (Email, SMS, Notifications)
 - JWT Authentication for secure user management
 - Responsive design with Tailwind CSS
 
