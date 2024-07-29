@@ -8,18 +8,18 @@ A real-time flight status monitoring system built with Next.js, NestJS, Apache K
 
 This Flight Status System is a comprehensive solution for tracking and notifying users about flight statuses. It leverages modern web technologies and event-driven architecture to provide real-time updates and notifications to users.
 
-Start by clicking Search button (may take time on first load due to cold start of servers):
+ - Start by clicking Search button (may take time on first load due to cold start of servers):
 ![1](readme_images/1.png)
 
-On clicking Update Delay, A kakfa event is triggered for the flight and all users subscribed to it are notified:
+ - On clicking Update Delay, A kakfa event is triggered for the flight and all users subscribed to it are notified:
 ![6](readme_images/6.png) 
 ![5](readme_images/5.png)
 ![3](readme_images/3.png)
 
-You can Edit your profile or see the flights you are subscribed to:
+ - You can Edit your profile or see the flights you are subscribed to:
 ![2](readme_images/2.png)
 
-Login/Register
+ - Login/Register
 ![4](readme_images/4.png)
 
 
