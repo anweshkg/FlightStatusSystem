@@ -3,7 +3,6 @@ import SearchForm from "../../components/SearchForm";
 import FlightResults from "../../components/FlightResults";
 
 export default function Results({ searchParams }) {
-  console.log(searchParams, "hehehe", searchParams.date);
   const date = searchParams.date;
   const source = searchParams.source;
   const destination = searchParams.destination;

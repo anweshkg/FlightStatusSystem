@@ -1,6 +1,8 @@
 import { Controller, Get, Query, UseGuards, Post, Delete, Param, Req } from '@nestjs/common';
 import { FlightService } from './flight.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.gaurd';
+import { RolesGuard } from 'src/auth/roles.gaurd';
+import { Roles } from 'src/auth/roles.decorator';
 
 @Controller('flights')
 export class FlightController {
@@ -29,6 +31,8 @@ export class FlightController {
     return { message: 'Unsubscribed successfully' };
   }
   
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   @Get('update-delay/:id')
   async updateDelay(@Param('id') id: string) {
     const delay = Math.floor(Math.random() * 61); // Random delay between 0 and 60

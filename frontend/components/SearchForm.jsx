@@ -12,7 +12,7 @@ export default function SearchForm({ initialValues = {} }) {
       date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 
     return [
-      { label: "Select a date", date: "" },
+      { label: "Search All Flights", date: "" },
       { label: `Yesterday (${formatDate(new Date(today.getTime() - 86400000))})`, date: new Date(today.getTime() - 86400000).toISOString().split('T')[0] },
       { label: `Today (${formatDate(today)})`, date: today.toISOString().split('T')[0] },
       { label: `Tomorrow (${formatDate(new Date(today.getTime() + 86400000))})`, date: new Date(today.getTime() + 86400000).toISOString().split('T')[0] },

@@ -9,10 +9,13 @@ import { format } from "date-fns";
 export default function FlightResults({ date, source, destination }) {
   const [flights, setFlights] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
     fetchFlights();
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    setUser(storedUser);
   }, [date, source, destination]);
 
   const fetchFlights = async () => {
@@ -65,13 +68,12 @@ export default function FlightResults({ date, source, destination }) {
       }
       await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/flights/update-delay/${flightId}`,
-        {},
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       toast.success("Flight delay updated successfully");
-      fetchFlights(); // Refresh the flight list
+      fetchFlights();
     } catch (error) {
       console.error("Error updating flight delay:", error);
       toast.error("Failed to update flight delay. Please try again.");
@@ -113,6 +115,10 @@ export default function FlightResults({ date, source, destination }) {
               <p>{flight.flightNumber}</p>
             </div>
             <div>
+              <p className="font-medium">Delay:</p>
+              <p>{flight.delay ? `${flight.delay} mins` : "No Delay"}</p>
+            </div>
+            <div>
               <p className="font-medium">Source:</p>
               <p>{flight.source}</p>
             </div>
@@ -128,10 +134,6 @@ export default function FlightResults({ date, source, destination }) {
               <p className="font-medium">Arrival:</p>
               <p>{format(new Date(flight.arrivalTime), "PPPpp")}</p>
             </div>
-            <div>
-              <p className="font-medium">Delay:</p>
-              <p>{flight.delay ? `${flight.delay} mins` : "No Delay"}</p>
-            </div>
           </div>
           <div className="mt-4 space-x-2">
             <button
@@ -146,7 +148,7 @@ export default function FlightResults({ date, source, destination }) {
             >
               Unsubscribe
             </button>
-            {(
+            {user && user.role === 'admin' && (
               <button
                 onClick={() => handleDelayUpdate(flight.id)}
                 className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition duration-200"

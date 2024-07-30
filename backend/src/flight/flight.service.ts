@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Between } from 'typeorm';
 import { Flight } from './flight.entity';
 import { KafkaService } from 'src/kafka/kafka.service';
 import { User } from 'src/user/user.entity';
@@ -24,12 +24,23 @@ export class FlightService {
   ): Promise<Flight[]> {
     const whereClause: any = {};
 
-    // if (date) whereClause.date = date;
     if (source) whereClause.source = source;
     if (destination) whereClause.destination = destination;
 
+    if (date) {
+      const startDate = new Date(date);
+      startDate.setHours(0, 0, 0, 0);
+      const endDate = new Date(date);
+      endDate.setHours(23, 59, 59, 999);
+
+      whereClause.departureTime = Between(startDate, endDate);
+    }
+
     return this.flightRepository.find({
       where: whereClause,
+      order: {
+        id: 'ASC',
+      },
     });
   }
 
