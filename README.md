@@ -98,7 +98,7 @@ The project is divided into two main folders:
    npm install
    ```
 
-4. Set up environment variables for both frontend and backend (refer to `.env.example` files in each directory).
+4. Set up environment variables for both frontend and backend (refer to `env.txt` files in each directory on dev branch).
 
 5. Start the development servers:
    - Frontend: `npm run dev` in the `frontend` directory
