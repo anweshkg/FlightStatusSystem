@@ -2,7 +2,7 @@
 
 A real-time flight status monitoring system built with Next.js, NestJS, Apache Kafka, and PostgreSQL.
 
-**Redhat Openshift Deployemnt:** [flight-status-system-frontend-anweshkg-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/](https://flight-status-system-frontend-anweshkg-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/)
+**Redhat Openshift Deployemnt:** [flight-status-system-git-anweshkg-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/](https://flight-status-system-git-anweshkg-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/)
 (Wait for a minute after clicking search button for the first time as server coldstarts for services such as kafka, smtp etc)
 
 **Vercel Deployment:** [flight-status-system-two.vercel.app](https://flight-status-system-two.vercel.app)
