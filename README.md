@@ -48,7 +48,7 @@ This Flight Status System is a comprehensive solution for tracking and notifying
  - Login/Register
 ![4](readme_images/4.png)
 
- - Postgresql E-R Diagram 
+ - Postgresql E-R Diagram
 ![8](readme_images/8.png)
 
 ### Key Features
