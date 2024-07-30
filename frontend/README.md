@@ -11,6 +11,9 @@ This is the frontend application for the Flight Status System. It's built with N
 - Update flight delays (admin only)
 - Responsive design using Tailwind CSS
 
+ - Context API for state management throughout the app:
+![10](../readme_images/10.png)
+
 ## Prerequisites
 
 - Node.js (v14 or later)
