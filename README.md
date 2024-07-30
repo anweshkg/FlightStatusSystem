@@ -11,6 +11,20 @@ A real-time flight status monitoring system built with Next.js, NestJS, Apache K
 
 This Flight Status System is a comprehensive solution for tracking and notifying users about flight statuses. It leverages modern web technologies and event-driven architecture to provide real-time updates and notifications to users.
 
+1. **Event-Driven Architecture:** Utilizes Apache Kafka to handle events such as flight delays, subscriptions, and unsubscriptions.
+
+2. **Real-time Notifications:** On flight delay changes, the system triggers an event in Kafka which sends Email/SMS/Push Notifications to logged-in users.
+
+3. **User Authentication:** Implements JWT authentication from scratch for robust user management.
+
+4. **State Management:** Uses React's Context API to maintain state throughout the application.
+
+5. **Multiple Kafka Topics:** Implements various Kafka topics to trigger notifications based on flight subscribe/unsubscribe/delay changes.
+
+6. **Responsive UI:** Employs Tailwind CSS to create a responsive and visually appealing user interface with an indigo-like theme.
+
+7. **RedHat OpenShift:** Deployed project through containerization on Developer Sandbox.
+
  - Start by clicking Search button (may take time on first load due to cold start of servers):
 ![1](readme_images/1.png)
 
@@ -54,20 +68,6 @@ The project is divided into two main folders:
 ├── frontend/    # Next.js application
 └── backend/     # NestJS application
 ```
-
-## Key Implementations
-
-1. **Event-Driven Architecture:** Utilizes Apache Kafka to handle events such as flight delays, subscriptions, and unsubscriptions.
-
-2. **Real-time Notifications:** On flight delay changes, the system triggers an event in Kafka which sends Email/SMS/Push Notifications to logged-in users.
-
-3. **User Authentication:** Implements JWT authentication from scratch for robust user management.
-
-4. **State Management:** Uses React's Context API to maintain state throughout the application.
-
-5. **Multiple Kafka Topics:** Implements various Kafka topics to trigger notifications based on flight subscribe/unsubscribe/delay changes.
-
-6. **Responsive UI:** Employs Tailwind CSS to create a responsive and visually appealing user interface with an indigo-like theme.
 
 ## Getting Started
 
