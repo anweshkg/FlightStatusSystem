@@ -11,7 +11,8 @@ This is the backend application for the Flight Status System. It's built with Ne
 - Flight delay updates
 
  - update delay api with RBAC and JWT decorators:
-![2](readme_images/9.png)
+
+![2](../readme_images/9.png)
 
 ## Prerequisites
 
