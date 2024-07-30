@@ -31,8 +31,11 @@ This Flight Status System is a comprehensive solution for tracking and notifying
 - Real-time flight status updates
 - User subscription to specific flights
 - Multi-channel notifications (Email, SMS, Notifications)
-- JWT Authentication for secure user management
-- Responsive design with Tailwind CSS
+- JWT Authentication for secure user management from scratch
+- Responsive design with Tailwind CSS to match Indigo Like Theme
+- Context API for state management throughout the App
+- TypeORM to seamlessly communicatte with hosted Database
+- Used Javascript in frontend and typescript in backend to show compatibility with both
 
 ### Tech Stack
 
