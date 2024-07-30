@@ -19,11 +19,15 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body() registerDto: { email: string; password: string; phoneNumber?: string }) {
+  async register(@Body() registerDto: { email: string; password: string; phoneNumber?: string; role: "user" | "admin" }) {
+    if (!['user', 'admin'].includes(registerDto.role)) {
+      throw new Error('Invalid role');
+    }
     const hashedPassword = await bcrypt.hash(registerDto.password, 10);
     const user = await this.userService.create({
       ...registerDto,
       password: hashedPassword,
+      role: registerDto.role, 
     });
     return this.authService.login(user);
   }

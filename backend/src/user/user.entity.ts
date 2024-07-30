@@ -16,6 +16,9 @@ export class User {
   @Column({ nullable: true })
   phoneNumber: string;
 
+  @Column()
+  role: 'user' | 'admin';
+
   @ManyToMany(() => Flight, (flight) => flight.subscribedUsers)
   @JoinTable()
   subscribedFlights: Flight[];
