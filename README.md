@@ -2,8 +2,8 @@
 
 A real-time flight status monitoring system built with Next.js, NestJS, Apache Kafka, and PostgreSQL.
 
-
 **Redhat Openshift Deployemnt:** [flight-status-system-frontend-anweshkg-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/](https://flight-status-system-frontend-anweshkg-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/)
+(Wait for a minute after clicking search button for the first time as server coldstarts for services such as kafka, smtp etc)
 
 **Vercel Deployment:** [flight-status-system-two.vercel.app](https://flight-status-system-two.vercel.app)
 
@@ -24,6 +24,8 @@ This Flight Status System is a comprehensive solution for tracking and notifying
 6. **Responsive UI:** Employs Tailwind CSS to create a responsive and visually appealing user interface with an indigo-like theme.
 
 7. **RedHat OpenShift:** Deployed project through containerization on Developer Sandbox.
+
+8. **Docker/Serverless Deployment:** Used Containerization to deploy on RedHat on dev branch to spin up a serverless instance.
 
  - Start by clicking Search button (may take time on first load due to cold start of servers):
 ![1](readme_images/1.png)
