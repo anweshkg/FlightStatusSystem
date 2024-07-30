@@ -21,14 +21,21 @@ This Flight Status System is a comprehensive solution for tracking and notifying
 
 5. **Multiple Kafka Topics:** Implements various Kafka topics to trigger notifications based on flight subscribe/unsubscribe/delay changes.
 
-6. **Responsive UI:** Employs Tailwind CSS to create a responsive and visually appealing user interface with an indigo-like theme.
+6. **RBAC Admin and User roles:** Admin can update delay and users can subscribe/unsubscribe to flights.
 
 7. **RedHat OpenShift:** Deployed project through containerization on Developer Sandbox.
 
 8. **Docker/Serverless Deployment:** Used Containerization to deploy on RedHat on dev branch to spin up a serverless instance.
 
+9. **Responsive UI:** Employs Tailwind CSS to create a responsive and visually appealing user interface with an Indigo like theme.
+
  - Start by clicking Search button (may take time on first load due to cold start of servers):
+
+- Admin Role View:
 ![1](readme_images/1.png)
+
+- User Role View:
+![7](readme_images/7.png)
 
  - On clicking Update Delay, A kakfa event is triggered for the flight and all users subscribed to it are notified:
 ![6](readme_images/6.png) 
